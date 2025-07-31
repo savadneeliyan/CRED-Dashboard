@@ -81,22 +81,7 @@ function ScrollVideoSection() {
   }, [videoTime, videoLoaded, videoDuration, isInView]);
 
   return (
-    <div
-      ref={scrollContainerRef}
-      // onWheel={(e) => {
-      //   const video = videoRef.current;
-      //   if (!video || !videoLoaded) return;
-
-      //   const current = video.currentTime;
-      //   const isAtStart = current <= 0.1;
-      //   const isAtEnd = current >= videoDuration - 0.1;
-
-      //   if (!isAtStart && !isAtEnd) {
-      //     e.preventDefault();
-      //   }
-      // }}
-      className="relative h-[300vh] bg-black"
-    >
+    <div ref={scrollContainerRef} className="relative h-[300vh] bg-black">
       <div className="sticky top-0 h-screen">
         <motion.video
           ref={videoRef}

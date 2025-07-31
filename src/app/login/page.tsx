@@ -1,0 +1,214 @@
+"use client";
+
+import { useState, ChangeEvent, FormEvent } from "react";
+import { motion } from "framer-motion";
+import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+
+interface FormData {
+  email: string;
+  password: string;
+  rememberMe: boolean;
+}
+
+interface ValidationErrors {
+  email?: string;
+  password?: string;
+}
+
+function LoginPage() {
+  const [formData, setFormData] = useState<FormData>({
+    email: "",
+    password: "",
+    rememberMe: false,
+  });
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [validationErrors, setValidationErrors] = useState<ValidationErrors>(
+    {}
+  );
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  const validateForm = () => {
+    const errors: ValidationErrors = {};
+
+    if (!formData.email) {
+      errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      errors.email = "Please enter a valid email";
+    }
+
+    if (!formData.password) {
+      errors.password = "Password is required";
+    } else if (formData.password.length < 6) {
+      errors.password = "Password must be at least 6 characters";
+    }
+
+    setValidationErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  const handleInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
+    const { name, value, type, checked } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: type === "checkbox" ? checked : value,
+    }));
+
+    if (validationErrors[name as keyof ValidationErrors]) {
+      setValidationErrors((prev) => ({
+        ...prev,
+        [name]: "",
+      }));
+    }
+  };
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement> | any) => {
+    e.preventDefault();
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+    setTimeout(() => setIsSubmitting(false), 2000);
+  };
+
+  const containerVariants = {
+    hidden: { opacity: 0, scale: 0.9 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: { duration: 0.5, staggerChildren: 0.1 },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.5 } },
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-white via-gray-100 to-white dark:from-gray-900 dark:via-gray-950 dark:to-black text-gray-800 dark:text-gray-100 flex items-center justify-center p-4">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+        className="w-full max-w-md"
+      >
+        <motion.div
+          variants={itemVariants}
+          className="bg-white/10 dark:bg-white/5 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 dark:border-white/10 p-8"
+        >
+          <div className="text-center mb-8">
+            <h1 className="text-3xl font-bold mb-2">Sign in to your account</h1>
+            <p className="text-gray-600 dark:text-gray-400">
+              Access your dashboard by logging in
+            </p>
+          </div>
+
+          <form className="space-y-6">
+            <motion.div variants={itemVariants}>
+              <label className="block text-sm font-medium mb-2">
+                Email Address
+              </label>
+              <div className="relative">
+                <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
+                  className={`w-full pl-10 pr-4 py-3 bg-white/10 dark:bg-white/5 border rounded-lg text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all ${
+                    validationErrors.email
+                      ? "border-red-500"
+                      : "border-white/20 dark:border-white/10"
+                  }`}
+                  placeholder="Enter your email"
+                />
+              </div>
+              {validationErrors.email && (
+                <p className="text-red-500 text-sm mt-1">
+                  {validationErrors.email}
+                </p>
+              )}
+            </motion.div>
+
+            <motion.div variants={itemVariants}>
+              <label className="block text-sm font-medium mb-2">Password</label>
+              <div className="relative">
+                <Lock className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <input
+                  type={showPassword ? "text" : "password"}
+                  name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
+                  className={`w-full pl-10 pr-12 py-3 bg-white/10 dark:bg-white/5 border rounded-lg text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all ${
+                    validationErrors.password
+                      ? "border-red-500"
+                      : "border-white/20 dark:border-white/10"
+                  }`}
+                  placeholder="Enter your password"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-indigo-500 transition-colors"
+                >
+                  {showPassword ? (
+                    <EyeOff className="w-5 h-5" />
+                  ) : (
+                    <Eye className="w-5 h-5" />
+                  )}
+                </button>
+              </div>
+              {validationErrors.password && (
+                <p className="text-red-500 text-sm mt-1">
+                  {validationErrors.password}
+                </p>
+              )}
+            </motion.div>
+
+            <motion.div
+              variants={itemVariants}
+              className="flex items-center justify-between"
+            >
+              <label className="flex items-center text-sm">
+                <input
+                  type="checkbox"
+                  name="rememberMe"
+                  checked={formData.rememberMe}
+                  onChange={handleInputChange}
+                  className="mr-2 rounded bg-white/10 border-white/20 text-indigo-500 focus:ring-indigo-500"
+                />
+                Remember me
+              </label>
+              <button
+                type="button"
+                className="text-sm text-indigo-500 hover:text-indigo-400 transition-colors"
+              >
+                Forgot password?
+              </button>
+            </motion.div>
+
+            <motion.button
+              variants={itemVariants}
+              type="button"
+              disabled={isSubmitting}
+              className="w-full cursor-pointer bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-3 rounded-lg font-medium hover:from-indigo-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
+              whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+              onClick={(e) => handleSubmit(e)}
+            >
+              {isSubmitting ? (
+                <div className="flex items-center justify-center">
+                  <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
+                  Signing in...
+                </div>
+              ) : (
+                "Sign In"
+              )}
+            </motion.button>
+          </form>
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+}
+
+export default LoginPage;

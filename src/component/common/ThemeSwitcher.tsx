@@ -5,15 +5,13 @@ import { useTheme } from "next-themes";
 import { motion } from "framer-motion";
 import { Sun, Moon } from "lucide-react";
 
-const THEME_KEY = "theme";
-
 const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false);
   const { setTheme, resolvedTheme } = useTheme();
 
   useEffect(() => {
     setMounted(true);
-    const storedTheme = localStorage.getItem(THEME_KEY);
+    const storedTheme = localStorage.getItem("theme");
     if (storedTheme === "dark" || storedTheme === "light") {
       setTheme(storedTheme);
     }
@@ -26,7 +24,7 @@ const ThemeSwitcher = () => {
   const handleThemeToggle = () => {
     const newTheme = isDark ? "light" : "dark";
     setTheme(newTheme);
-    localStorage.setItem(THEME_KEY, newTheme);
+    localStorage.setItem("theme", newTheme);
   };
 
   return (
@@ -35,11 +33,12 @@ const ThemeSwitcher = () => {
         onClick={handleThemeToggle}
         // focus:outline-none focus:ring-4 focus:ring-opacity-50
         className={`
-        relative w-16 h-8 rounded-full p-1 transition-colors duration-300 
+        ring-1
+        relative w-16 h-8 rounded-full p-1 transition-colors duration-300 cursor-pointer
          
         ${
           isDark
-            ? "bg-indigo-600 focus:ring-indigo-400"
+            ? "bg-[#1c1c1c] focus:ring-gray-400"
             : "bg-gray-300 focus:ring-gray-400"
         }
       `}
@@ -47,7 +46,7 @@ const ThemeSwitcher = () => {
         whileHover={{ scale: 1.05 }}
         initial={false}
         animate={{
-          backgroundColor: isDark ? "#4f46e5" : "#d1d5db",
+          backgroundColor: isDark ? "#1c1c1c" : "#d1d5db",
         }}
         transition={{ duration: 0.3 }}
       >
@@ -72,7 +71,7 @@ const ThemeSwitcher = () => {
             className="flex items-center justify-center"
           >
             {isDark ? (
-              <Moon size={14} className="text-indigo-600" />
+              <Moon size={14} className="text-[#1c1c1c]" />
             ) : (
               <Sun size={14} className="text-yellow-500" />
             )}

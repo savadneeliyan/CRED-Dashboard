@@ -51,7 +51,7 @@ function EnterGarage() {
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
           className="w-screen h-screen absolute left-0 top-0 flex flex-col items-center justify-center"
         >
-          <h3 className="text-[66px] font-semibold mb-4">
+          <h3 className="text-[66px] text-white font-semibold mb-4">
             Welcome to the Garage
           </h3>
 

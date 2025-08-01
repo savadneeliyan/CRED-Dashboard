@@ -1,31 +1,64 @@
 "use client";
 
-import { useState, ChangeEvent, FormEvent } from "react";
+import { useState, ChangeEvent, FormEvent, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { FormData, ValidationErrors } from "../types/auth";
+import { useAuth } from "@/hooks/useAuth";
 
-interface FormData {
-  email: string;
-  password: string;
-  rememberMe: boolean;
-}
-
-interface ValidationErrors {
-  email?: string;
-  password?: string;
-}
+const dummyUsers = [
+  {
+    email: "admin@gmail.com",
+    password: "admin@123",
+    user: {
+      id: 1,
+      name: "Admin",
+      email: "admin@gmail.com",
+      role: "admin",
+      avatar:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+    },
+  },
+];
 
 function LoginPage() {
+  const router = useRouter();
+  const {
+    login,
+    loading,
+    error,
+    isAuthenticated,
+    clearAuthError,
+    loginAttempts,
+  } = useAuth();
+
   const [formData, setFormData] = useState<FormData>({
-    email: "",
-    password: "",
+    email: "admin@gmail.com",
+    password: "admin@123",
     rememberMe: false,
   });
   const [showPassword, setShowPassword] = useState<boolean>(false);
+
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>(
     {}
   );
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push("/dashboard");
+    }
+  }, [isAuthenticated, router]);
+
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        clearAuthError();
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [error, clearAuthError]);
 
   const validateForm = () => {
     const errors: ValidationErrors = {};
@@ -61,12 +94,50 @@ function LoginPage() {
     }
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement> | any) => {
+  const mokeLoginApi = async (credentials: FormData) => {
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    const matchingUser = dummyUsers.find(
+      (user) =>
+        user.email == credentials.email && user.password == credentials.password
+    );
+
+    if (matchingUser) {
+      return {
+        success: true,
+        token: `jwt-token-${Date.now()}`,
+        user: matchingUser.user,
+      };
+    } else {
+      throw new Error("Invalid email or password");
+    }
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement> | any) => {
     e.preventDefault();
     if (!validateForm()) return;
+    clearAuthError();
 
     setIsSubmitting(true);
-    setTimeout(() => setIsSubmitting(false), 2000);
+
+    try {
+      const result = await mokeLoginApi(formData);
+
+      await login({
+        email: formData.email,
+        password: formData.password,
+        mockResponse: result,
+      });
+
+      console.log("Login successful!");
+      router.push("/dashboard");
+    } catch (err) {
+      console.log("Login failed:", err);
+    } finally {
+      // setTimeout(() => {
+      setIsSubmitting(false);
+      // }, 2000);
+    }
   };
 
   const containerVariants = {
@@ -189,13 +260,13 @@ function LoginPage() {
             <motion.button
               variants={itemVariants}
               type="button"
-              disabled={isSubmitting}
+              disabled={loading || isSubmitting}
               className="w-full cursor-pointer bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-3 rounded-lg font-medium hover:from-indigo-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              whileHover={{ scale: isSubmitting ? 1 : 1.02 }}
-              whileTap={{ scale: isSubmitting ? 1 : 0.98 }}
+              whileHover={{ scale: loading || isSubmitting ? 1 : 1.02 }}
+              whileTap={{ scale: loading || isSubmitting ? 1 : 0.98 }}
               onClick={(e) => handleSubmit(e)}
             >
-              {isSubmitting ? (
+              {loading || isSubmitting ? (
                 <div className="flex items-center justify-center">
                   <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div>
                   Signing in...

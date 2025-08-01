@@ -1,6 +1,9 @@
+"use client";
 import { ThemeProvider } from "next-themes";
 import "./globals.css";
 import ThemeSwitcher from "@/component/common/ThemeSwitcher";
+import { Provider } from "react-redux";
+import { store } from "./store";
 
 export default function RootLayout({
   children,
@@ -11,11 +14,13 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <div className="bg-white dark:bg-gray-800 duration-500">
-            <ThemeSwitcher />
+          <Provider store={store}>
+            <div className="bg-white dark:bg-gray-800 duration-500">
+              <ThemeSwitcher />
 
-            {children}
-          </div>
+              {children}
+            </div>
+          </Provider>
         </ThemeProvider>
       </body>
     </html>

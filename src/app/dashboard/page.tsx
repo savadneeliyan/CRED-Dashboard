@@ -160,14 +160,14 @@ const Dashboard = () => {
           animate={{ opacity: 1 }}
           className="min-h-screen bg-gray-100 dark:bg-zinc-900 text-gray-900 dark:text-white"
         >
-          <header className="bg-white dark:bg-zinc-800 shadow-sm border-b dark:border-zinc-700">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <header className="bg-white  dark:bg-zinc-800 shadow-sm border-b dark:border-zinc-700">
+            <div className="max-w-7xl mx-auto px-4 pt-12 lg:pt-0 sm:px-6 lg:px-8">
               <div className="flex justify-between items-center h-16">
                 <h1
                   className="text-2xl font-bold cursor-pointer"
                   onClick={() => router.push("/")}
                 >
-                  Dashboard
+                  CRED
                 </h1>
 
                 <div className="flex items-center space-x-4">
@@ -194,7 +194,7 @@ const Dashboard = () => {
             </div>
           </header>
 
-          <div className=" py-20">
+          <div className="py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8">
             <div className="max-w-7xl mx-auto space-y-8">
               <div className="text-center space-y-4">
                 <h1 className="text-4xl font-bold  text-gray-900 dark:text-white">

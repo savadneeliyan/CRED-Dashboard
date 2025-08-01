@@ -163,7 +163,7 @@ const BenefitsCards = () => {
   };
 
   return (
-    <div className="min-h-screen bg-white dark:bg-[#161517] py-12 px-4">
+    <div className="min-h-screen bg-white dark:bg-[#161517] py-12 px-4 duration-500">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -20 }}

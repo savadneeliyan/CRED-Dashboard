@@ -206,7 +206,7 @@ const UserProfileSummary = () => {
           <section className=" pt-16 py-8 sm:py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-white via-gray-100 to-white duration-500 dark:from-gray-900 dark:via-gray-950 dark:to-black text-gray-800 dark:text-gray-100 relative min-h-screen">
             <button
               onClick={() => router.push("/dashboard")}
-              className="absolute top-4 sm:top-6 lg:top-8 left-4 sm:left-6 lg:left-8 z-20 p-2 hover:bg-white/10 rounded-full transition-colors"
+              className="absolute cursor-pointer top-4 sm:top-6 lg:top-8 left-4 sm:left-6 lg:left-8 z-20 p-2 hover:bg-white/10 rounded-full transition-colors"
             >
               <ArrowLeft className="w-5 h-5 sm:w-6 sm:h-6" />
             </button>

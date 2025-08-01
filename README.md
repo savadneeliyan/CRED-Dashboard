@@ -1,36 +1,147 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cred Garage
 
-## Getting Started
+A modern Next.js application built with the latest web technologies for optimal performance and developer experience.
 
-First, run the development server:
+## 🛠️ Tech Stack
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Framework**: Next.js 15.4.5 with App Router
+- **Language**: TypeScript 5
+- **Styling**: Tailwind CSS 4 (latest)
+- **UI Components**: TSX/React 19.1.0
+- **State Management**: Redux Toolkit 2.8.2 with React Redux 9.2.0
+- **Animations**: Framer Motion 12.23.12
+- **Theming**: Next Themes 0.4.6 (Dark/Light mode)
+- **Charts**: Recharts 3.1.0
+- **Icons**: Lucide React 0.534.0
+- **Development**: Turbopack for faster development builds
+- **Linting**: ESLint 9 with Next.js configuration
+
+## 🚀 Setup Instructions
+
+### Prerequisites
+
+- Node.js 18+ installed on your machine
+- npm, yarn, or pnpm package manager
+
+### Installation
+
+1. **Clone the repository**
+
+   ```bash
+   git clone https://github.com/savadneeliyan/CRED-Dashboard.git
+   cd cred-garage
+   ```
+
+2. **Install dependencies**
+
+   ```bash
+   npm install
+   # or
+   yarn install
+   # or
+   pnpm install
+   ```
+
+3. **Run the development server**
+
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   # or
+   pnpm dev
+   ```
+
+4. **Open your browser**
+
+   Navigate to [http://localhost:3000](http://localhost:3000) to see the application running.
+
+### Available Scripts
+
+- `npm run dev` - Start development server with Turbopack for faster builds
+- `npm run build` - Build the application for production
+- `npm run start` - Start the production server
+- `npm run lint` - Run ESLint to check for code quality issues
+
+## ✨ Features Overview
+
+### Core Features
+
+- **Modern Next.js 15**: Built with the latest Next.js features including App Router and React Server Components
+- **TypeScript Support**: Full TypeScript integration for type safety and better developer experience
+- **Responsive Design**: Mobile-first responsive design using Tailwind CSS 4
+- **Dark/Light Theme**: Theme switching capability with next-themes
+- **State Management**: Centralized state management using Redux Toolkit
+- **Smooth Animations**: Beautiful animations and transitions powered by Framer Motion
+
+### UI/UX Features
+
+- **Modern Icon System**: Comprehensive icon library with Lucide React
+- **Data Visualization**: Interactive charts and graphs using Recharts
+- **Optimized Performance**: Turbopack integration for lightning-fast development builds
+- **Code Quality**: ESLint configuration for maintaining code standards
+
+### Developer Experience
+
+- **Hot Reload**: Instant updates during development
+- **Type Safety**: Full TypeScript support with strict type checking
+- **Modern CSS**: Utility-first CSS framework with Tailwind CSS 4
+- **Component Architecture**: Modular and reusable component structure
+
+## 📁 Project Structure
+
+```
+cred-garage/
+├── src/
+│   ├── app/              # Next.js App Router pages
+│   ├── components/       # Reusable UI components
+│   ├── lib/             # Utility functions and configurations
+│   ├── store/           # Redux store and slices
+│   └── types/           # TypeScript type definitions
+├── public/              # Static assets
+└── package.json         # Project dependencies and scripts
+
+cred-garage/
+├── public/              # Static assets (images, icons, etc.)
+├── src/
+│   ├── app/            # Next.js App Router pages and layouts
+│   ├── assets/         # Static assets and resources
+│   ├── component/      # Reusable UI components
+│   ├── hooks/          # Custom React hooks
+│   └── styles/         # Global styles and CSS modules
+├── package.json        # Project dependencies and scripts
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🔧 Configuration
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The application comes pre-configured with:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Tailwind CSS 4 for styling
+- ESLint for code linting
+- TypeScript for type checking
+- Redux Toolkit for state management
+- Next Themes for theme switching
 
-## Learn More
+## 📱 Screenshots
 
-To learn more about Next.js, take a look at the following resources:
+_Add your application screenshots here_
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 🎥 Walkthrough
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+_Add link to your Loom walkthrough video here_
 
-## Deploy on Vercel
+## 🤝 Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'Add some amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📄 License
+
+This project is private and proprietary.
+
+---
+
+Built with ❤️ using Next.js and modern web technologies.

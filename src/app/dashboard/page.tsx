@@ -20,6 +20,10 @@ const Dashboard = () => {
     router.push("/login");
   };
 
+  const handleProfileClick = () => {
+    router.push("/profile");
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-white dark:bg-black">
@@ -44,7 +48,10 @@ const Dashboard = () => {
             <h1 className="text-2xl font-bold">Dashboard</h1>
 
             <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-3">
+              <div
+                className="flex items-center cursor-pointer space-x-3"
+                onClick={handleProfileClick}
+              >
                 <img
                   src={user.avatar}
                   alt={user.name}

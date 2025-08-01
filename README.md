@@ -92,16 +92,6 @@ A modern Next.js application built with the latest web technologies for optimal 
 
 ```
 cred-garage/
-├── src/
-│   ├── app/              # Next.js App Router pages
-│   ├── components/       # Reusable UI components
-│   ├── lib/             # Utility functions and configurations
-│   ├── store/           # Redux store and slices
-│   └── types/           # TypeScript type definitions
-├── public/              # Static assets
-└── package.json         # Project dependencies and scripts
-
-cred-garage/
 ├── public/              # Static assets (images, icons, etc.)
 ├── src/
 │   ├── app/            # Next.js App Router pages and layouts

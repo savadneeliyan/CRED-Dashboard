@@ -18,18 +18,32 @@ export const loginUser = createAsyncThunk<
 >("auth/loginUser", async (credentials, { rejectWithValue }) => {
   try {
     if (credentials.mockResponse) {
-      let data = {
+      return {
         token: credentials.mockResponse.token,
         user: credentials.mockResponse.user,
       };
-      if (typeof window !== "undefined") {
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
-      }
-      return data;
     }
 
-    throw new Error("Login failed");
+    const response = await fetch("/api/auth/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: credentials.email,
+        password: credentials.password,
+      }),
+    });
+
+    if (!response.ok) throw new Error("Login failed");
+
+    const data = await response.json();
+    console.log(response);
+
+    localStorage.setItem("token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.user));
+
+    return data;
   } catch (error: any) {
     return rejectWithValue(error.message);
   }

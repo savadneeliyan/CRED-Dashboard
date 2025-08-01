@@ -134,9 +134,7 @@ function LoginPage() {
     } catch (err) {
       console.log("Login failed:", err);
     } finally {
-      // setTimeout(() => {
       setIsSubmitting(false);
-      // }, 2000);
     }
   };
 
@@ -185,7 +183,7 @@ function LoginPage() {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className={`w-full pl-10 pr-4 py-3 bg-white/10 dark:bg-white/5 border rounded-lg text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all ${
+                  className={`w-full pl-10 pr-4 py-3 bg-white/10 dark:bg-white/5 border border-gray-800 shadow-lg hover:shadow-xl rounded-lg dark:border-zinc-700 text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all ${
                     validationErrors.email
                       ? "border-red-500"
                       : "border-white/20 dark:border-white/10"
@@ -209,7 +207,7 @@ function LoginPage() {
                   name="password"
                   value={formData.password}
                   onChange={handleInputChange}
-                  className={`w-full pl-10 pr-12 py-3 bg-white/10 dark:bg-white/5 border rounded-lg text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all ${
+                  className={`w-full pl-10 pr-12 py-3 border-gray-200 shadow-lg hover:shadow-xl bg-white/10 dark:bg-white/5 border rounded-lg text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all ${
                     validationErrors.password
                       ? "border-red-500"
                       : "border-white/20 dark:border-white/10"
@@ -249,19 +247,13 @@ function LoginPage() {
                 />
                 Remember me
               </label>
-              <button
-                type="button"
-                className="text-sm text-indigo-500 hover:text-indigo-400 transition-colors"
-              >
-                Forgot password?
-              </button>
             </motion.div>
 
             <motion.button
               variants={itemVariants}
               type="button"
               disabled={loading || isSubmitting}
-              className="w-full cursor-pointer bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-3 rounded-lg font-medium hover:from-indigo-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full cursor-pointer  from-indigo-500 to-purple-600 text-white py-3 rounded-lg font-medium hover:from-indigo-600 hover:to-purple-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-all disabled:opacity-50 disabled:cursor-not-allowed bg-transparent border    hover:bg-[#0d0d0d] duration-500"
               whileHover={{ scale: loading || isSubmitting ? 1 : 1.02 }}
               whileTap={{ scale: loading || isSubmitting ? 1 : 0.98 }}
               onClick={(e) => handleSubmit(e)}
@@ -275,6 +267,15 @@ function LoginPage() {
                 "Sign In"
               )}
             </motion.button>
+
+            <div className="flex items-center justify-center">
+              <p
+                className="text-gray-600 flex bg-transparent dark:text-gray-400 text-center cursor-pointer duration-500 hover:text-blue-500"
+                onClick={() => router.push("/")}
+              >
+                Back To Home Page
+              </p>
+            </div>
           </form>
         </motion.div>
       </motion.div>

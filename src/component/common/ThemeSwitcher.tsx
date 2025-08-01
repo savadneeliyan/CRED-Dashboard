@@ -31,7 +31,6 @@ const ThemeSwitcher = () => {
     <div className="cursor-pointer fixed z-50 top-5 right-5">
       <motion.button
         onClick={handleThemeToggle}
-        // focus:outline-none focus:ring-4 focus:ring-opacity-50
         className={`
         ring-1
         relative w-16 h-8 rounded-full p-1 transition-colors duration-300 cursor-pointer

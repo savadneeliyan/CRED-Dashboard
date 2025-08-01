@@ -39,7 +39,6 @@ function Footer() {
   return (
     <div className="bg-white dark:bg-[#161517] dark:text-white text-gray-800 duration-500 py-[100px]">
       <div className="container m-auto">
-        {/* gap-x-[70px] */}
         <div className="grid grid-cols-2 ">
           <div>
             <Image
@@ -69,7 +68,6 @@ function Footer() {
 
           <div className="grid md:grid-cols-2 grid-cols-4 gap-x-[150px]">
             {menus.map((section) => (
-              // mb-[30px]
               <div key={section.title} className="">
                 <h2 className="font-Gilroy-bold text-[18px] tracking-[0.75px] leading-[33px] mb-[20px] opacity-90">
                   {section.title}

@@ -4,8 +4,10 @@ import Image from "next/image";
 import logo from "@/assets/icons/cred-logo.svg";
 import { ArrowRight } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/hooks/useAuth";
 
 function Hero() {
+  const { user, isAuthenticated, logout, loading } = useAuth();
   const router = useRouter();
 
   return (
@@ -20,9 +22,9 @@ function Hero() {
         />
         <button
           className="px-8 py-3 flex items-center gap-3  bg-transparent border  cursor-pointer text-white font-semibold  hover:bg-[#0d0d0d] transition duration-500"
-          onClick={() => router.push("/login")}
+          onClick={() => router.push(isAuthenticated ? "/dashboard" : "/login")}
         >
-          Login
+          {isAuthenticated ? "View Dashboard" : "Login"}
           <ArrowRight />
         </button>
       </div>

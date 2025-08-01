@@ -1,6 +1,6 @@
 import Footer from "@/component/common/Footer";
 import EnterGarage from "@/component/home/EnterGarage";
-import Garage from "@/component/home/Garage";
+import BenefitsCards from "@/component/home/BenefitsCards";
 import Hero from "@/component/home/Hero";
 import ScrollVideoSection from "@/component/home/ScrollVideoSection";
 
@@ -17,7 +17,7 @@ export default function Home() {
       <main>
         <div>
           <Hero />
-          <Garage />
+          <BenefitsCards />
           <ScrollVideoSection />
           <EnterGarage />
           <Footer />

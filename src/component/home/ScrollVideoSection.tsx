@@ -68,7 +68,7 @@ function ScrollVideoSection() {
 
       if (!video.seeking) {
         const current = video.currentTime;
-        let target = Math.min(time, videoDuration);
+        const target = Math.min(time, videoDuration);
         video.currentTime = lerp(current, target, 0.25);
       }
       frameId = requestAnimationFrame(update);

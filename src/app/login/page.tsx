@@ -113,7 +113,7 @@ function LoginPage() {
     }
   };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement> | any) => {
+  const handleSubmit = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (!validateForm()) return;
     clearAuthError();

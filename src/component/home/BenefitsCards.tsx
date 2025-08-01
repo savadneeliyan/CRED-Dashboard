@@ -9,6 +9,7 @@ import {
   CreditCard,
 } from "lucide-react";
 import MagneticCard from "../common/Animation";
+import { useRouter } from "next/navigation";
 
 interface Benefit {
   id: string;
@@ -137,6 +138,8 @@ const hoverVariants = {
 };
 
 const BenefitsCards = () => {
+  const router = useRouter();
+
   const getTypeLabel = (type: string) => {
     const labels = {
       discount: "Discount",
@@ -187,7 +190,7 @@ const BenefitsCards = () => {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
           {benefitsData.map((benefit) => (
-            <MagneticCard>
+            <MagneticCard key={benefit.id}>
               <motion.div
                 key={benefit.id}
                 variants={cardVariants}
@@ -227,7 +230,7 @@ const BenefitsCards = () => {
                     </p>
 
                     <div className="mb-4">
-                      <span className={`text-3xl font-bold ${benefit.color}`}>
+                      <span className={`text-xl font-bold ${benefit.color}`}>
                         {benefit.value}
                       </span>
                     </div>
@@ -246,7 +249,8 @@ const BenefitsCards = () => {
                       <motion.button
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className={`px-4 py-2 rounded-lg ${benefit.color} bg-white/80 hover:bg-white transition-colors text-sm font-medium`}
+                        className={`px-4 py-2 cursor-pointer rounded-lg ${benefit.color} bg-white/80 hover:bg-white transition-colors text-sm font-medium`}
+                        onClick={() => router.push("/dashboard")}
                       >
                         Claim Now
                       </motion.button>
@@ -275,6 +279,7 @@ const BenefitsCards = () => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             className="px-8 py-3 m-auto   bg-transparent border  cursor-pointer text-white font-semibold  hover:bg-[#0d0d0d] transition duration-500"
+            onClick={() => router.push("/dashboard")}
           >
             View All Benefits
           </motion.button>

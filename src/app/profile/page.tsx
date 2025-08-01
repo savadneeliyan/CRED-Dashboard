@@ -340,7 +340,7 @@ const UserProfileSummary = () => {
                     {stats.map((stat, index) => {
                       const StatIcon = stat.icon;
                       return (
-                        <MagneticCard>
+                        <MagneticCard key={`user-${index}`}>
                           <motion.div
                             key={stat.label}
                             variants={itemVariants}

@@ -208,7 +208,7 @@ const Dashboard = () => {
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {stats.map((stat, index) => (
-                  <MagneticCard>
+                  <MagneticCard key={`stats-${index}`}>
                     <div
                       key={index}
                       className="bg-white cursor-pointer dark:bg-zinc-800 rounded-xl shadow-lg p-6 border border-gray-200 dark:border-zinc-700 hover:shadow-xl transition-all duration-300 hover:-translate-y-0"
@@ -240,7 +240,7 @@ const Dashboard = () => {
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {benefits.map((benefit, index) => (
-                    <MagneticCard>
+                    <MagneticCard key={`benefits-${index}`}>
                       <div
                         key={index}
                         className="group relative cursor-pointer bg-white dark:bg-zinc-800 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-500 hover:-translate-y-0"

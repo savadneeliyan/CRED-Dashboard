@@ -122,13 +122,6 @@ The application comes pre-configured with:
 - Redux Toolkit for state management
 - Next Themes for theme switching
 
-## 📱 Screenshots
-
-_Add your application screenshots here_
-
-## 🎥 Walkthrough
-
-_Add link to your Loom walkthrough video here_
 
 ## 🤝 Contributing
 
@@ -138,10 +131,5 @@ _Add link to your Loom walkthrough video here_
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📄 License
-
-This project is private and proprietary.
-
----
 
 Built with ❤️ using Next.js and modern web technologies.

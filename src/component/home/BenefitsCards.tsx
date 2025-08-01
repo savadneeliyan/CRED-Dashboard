@@ -1,5 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 import {
   Gift,
   Percent,
@@ -107,7 +108,7 @@ const containerVariants = {
   },
 };
 
-const cardVariants = {
+const cardVariants: Variants = {
   hidden: {
     opacity: 0,
     y: 30,
@@ -125,7 +126,7 @@ const cardVariants = {
   },
 };
 
-const hoverVariants = {
+const hoverVariants: Variants = {
   hover: {
     y: -8,
     scale: 1.02,

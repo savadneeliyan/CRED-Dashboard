@@ -44,8 +44,11 @@ export const loginUser = createAsyncThunk<
     localStorage.setItem("user", JSON.stringify(data.user));
 
     return data;
-  } catch (error: any) {
-    return rejectWithValue(error.message);
+  } catch (error: unknown) {
+    if (typeof error === "object" && error !== null && "message" in error) {
+      return rejectWithValue((error as { message: string }).message);
+    }
+    return rejectWithValue("Unknown error occurred");
   }
 });
 
@@ -60,8 +63,11 @@ export const logoutUser = createAsyncThunk<
       localStorage.removeItem("user");
     }
     return true;
-  } catch (error: any) {
-    return rejectWithValue(error.message);
+  } catch (error: unknown) {
+    if (typeof error === "object" && error !== null && "message" in error) {
+      return rejectWithValue((error as { message: string }).message);
+    }
+    return rejectWithValue("Unknown error occurred");
   }
 });
 
@@ -83,12 +89,15 @@ export const checkAuthStatus = createAsyncThunk<
     const user = JSON.parse(userStr) as User;
 
     return { token, user };
-  } catch (error: any) {
+  } catch (error: unknown) {
     if (typeof window !== "undefined") {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
     }
-    return rejectWithValue(error.message);
+    if (typeof error === "object" && error !== null && "message" in error) {
+      return rejectWithValue((error as { message: string }).message);
+    }
+    return rejectWithValue("Unknown error occurred");
   }
 });
 
